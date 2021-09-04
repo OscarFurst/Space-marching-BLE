@@ -59,7 +59,7 @@ def dv_upwind(v, j):
 
 # computational domain
 nx = 15
-ny = 5
+ny = 11
 h = 1/ny
 dt = 0.01
 t_end = 1
@@ -87,3 +87,7 @@ for k in range(nx): # space marching (in axial direction)
                 v[k][timestep-1],
                 h, dt, nx, ny, Re))
         v[k].append(compute_v(u[k][timestep-1], u_min, h, nx, ny))
+
+for i in range(nx):
+    plt.plot(u[i][-1])
+plt.show()
