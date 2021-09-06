@@ -18,17 +18,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 from BLE_FVM import *
 
+def centered_parabola(ny):
+    x = np.arange(ny)
+    y = -(x+0.5)*(x-(ny-0.5))
+    return y/np.trapz(y)
+
 # computational domain
 nx = 15
-ny = 21
+ny = 15
 h = 1/ny
-dt = 0.001
+dt = 0.005
 t_end = 1
 
 # starting and boundary conditions
 Re = 5
-u0 = np.ones(ny)
-u0[[0, -1]] = 0
+u0 = centered_parabola(ny)
+u0 = np.ones(ny)*h # only FVM !
 v0 = np.zeros(ny)
 u_min = u0
 flux = 0.1
